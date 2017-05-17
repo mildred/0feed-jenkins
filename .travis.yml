@@ -7,10 +7,10 @@ script:
   - 0install add 0compile http://0install.net/2006/interfaces/0compile.xml
   - 0install add 0publish http://0install.net/2006/interfaces/0publish
   - if [ -e 0compile.sh ]; then
-      ./0compile.sh
+      ./0compile.sh;
     else
-      feed=$(python3 -c 'import configparser;c=configparser.ConfigParser();c.read("0compile.properties");print(c["compile"]["interface"])')
-      0compile build
-      0compile publish --target-feed=${feed}_implem.xml .
-      0publish -a ${feed}_implem.xml $feed
+      feed=$(python3 -c 'import configparser;c=configparser.ConfigParser();c.read("0compile.properties");print(c["compile"]["interface"])');
+      0compile build;
+      0compile publish --target-feed=${feed}_implem.xml .;
+      0publish -a ${feed}_implem.xml $feed;
     fi
