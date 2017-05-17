@@ -10,7 +10,20 @@ script:
     cd 0install-linux-x86_64-2.4-rc1 && ./install.sh home
   - 0install add 0compile http://0install.net/2006/interfaces/0compile.xml
   - 0install add 0publish http://0install.net/2006/interfaces/0publish
-  - if [ -e 0compile.sh ]; then
+  - if [ -d 0compile.version/ ]; then
+      version=$( (cd 0compile.version &&git describe --tags --dirty --always | sed "s/^[^0-9]*//" ));
+    elif [ -x 0compile.version ]; then
+      ./0compile.version;
+    elif [ -e 0compile.version ]; then
+      version=$(cat 0compile.version);
+    else
+      version=$(git describe --tags --dirty --always | sed "s/^[^0-9]*//");
+    fi;
+    if [ -n "$version" ]; then
+      feed=$(python3 -c 'import configparser;c=configparser.ConfigParser();c.read("0compile.properties");print(c["compile"]["interface"])');
+      0publish --set-version=$version --select-version=0 $feed
+    fi
+  - if [ -x 0compile.sh ]; then
       ./0compile.sh;
     else
       feed=$(python3 -c 'import configparser;c=configparser.ConfigParser();c.read("0compile.properties");print(c["compile"]["interface"])');

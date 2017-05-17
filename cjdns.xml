@@ -1,8 +1,6 @@
 <?xml version="1.0" ?>
 <?xml-stylesheet type='text/xsl' href='interface.xsl'?>
-<interface
-  xmlns:compile="http://zero-install.sourceforge.net/2006/namespaces/0compile"
-  xmlns="http://zero-install.sourceforge.net/2004/injector/interface">
+<interface xmlns="http://zero-install.sourceforge.net/2004/injector/interface" xmlns:compile="http://zero-install.sourceforge.net/2006/namespaces/0compile">
   <name>cjdns</name>
   <summary>cures all ills</summary>
   <description>
@@ -40,10 +38,10 @@
 	 interface file to the directory containing the program.
 	 Usually, you can just leave it as '.'.
     -->
-    <implementation arch="*-src" id="./cjdns" version="0" compile:dup-src='true'>
-      <command name='compile' shell-command='./do &amp;&amp; cp cjdroute $DISTDIR'>
+    <implementation arch="*-src" compile:dup-src="true" id="./cjdns" version="19.1">
+      <command name="compile" shell-command="./do &amp;&amp; cp cjdroute $DISTDIR">
         <compile:implementation>
-          <command name='run' path='./cjdroute'>
+          <command name="run" path="./cjdroute">
           </command>
       	</compile:implementation>
       </command>
