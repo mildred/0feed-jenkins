@@ -1,16 +1,18 @@
 language: c
 dist: trusty
-addons:
-  apt:
-    packages:
-      - python-gobject
-      #- zeroinstall-injector
-script:
+#addons:
+#  apt:
+#    packages:
+#      - python-gobject
+#      #- zeroinstall-injector
+install:
+  - pip install --user gobject
   - wget https://downloads.sourceforge.net/project/zero-install/0install/2.4-rc1/0install-linux-x86_64-2.4-rc1.tar.bz2;
     tar xf 0install-linux-x86_64-2.4-rc1.tar.bz2;
     cd 0install-linux-x86_64-2.4-rc1 && ./install.sh home
   - 0install -c add 0compile http://0install.net/2006/interfaces/0compile.xml
   - 0install -c add 0publish http://0install.net/2006/interfaces/0publish
+script:
   - if [ -d 0compile.version/ ]; then
       version=$( (cd 0compile.version && git describe --tags --dirty --always | sed "s/^[^0-9]*//" ) );
     elif [ -x 0compile.version ]; then
