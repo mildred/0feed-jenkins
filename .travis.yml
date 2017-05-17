@@ -12,9 +12,9 @@ install:
   - 0install -c add 0publish http://0install.net/2006/interfaces/0publish
 script:
   - git submodule update --remote
-  - set -x; pwd; ls;
+  - set -x; pwd;
     if [ -d 0compile.version/ ]; then
-      version=$( (cd 0compile.version && git describe --tags --dirty --always | sed "s/^[^0-9]*//" && cd -) );
+      version=$( (cd 0compile.version && git describe --tags --dirty --always | sed "s/^[^0-9]*//") );
     elif [ -x 0compile.version ]; then
       version=$(./0compile.version);
     elif [ -e 0compile.version ]; then
@@ -23,15 +23,13 @@ script:
       version=$(git describe --tags --dirty --always | sed "s/^[^0-9]*//");
     fi;
     if [ -n "$version" ]; then
-      cat 0compile.properties;
       feed=$(python3 -c 'import configparser;c=configparser.ConfigParser();c.read("0compile.properties");print(c["compile"]["interface"])');
       0publish --set-version=$version --select-version=0 $feed;
     fi
-  - set -x; pwd; ls;
+  - set -x; pwd;
     if [ -x 0compile.sh ]; then
       ./0compile.sh;
     else
-      cat 0compile.properties;
       feed=$(python3 -c 'import configparser;c=configparser.ConfigParser();c.read("0compile.properties");print(c["compile"]["interface"])');
       0compile build;
       0compile publish --target-feed=${feed}_implem.xml .;
