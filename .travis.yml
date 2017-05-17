@@ -1,10 +1,13 @@
 language: c
 dist: trusty
-addons:
-  apt:
-    packages:
-      - zeroinstall-injector
+#addons:
+#  apt:
+#    packages:
+#      - zeroinstall-injector
 script:
+  - wget https://downloads.sourceforge.net/project/zero-install/0install/2.4-rc1/0install-linux-x86_64-2.4-rc1.tar.bz2;
+    tar xf 0install-linux-x86_64-2.4-rc1.tar.bz2;
+    cd 0install-linux-x86_64-2.4-rc1 && ./install.sh home
   - 0install add 0compile http://0install.net/2006/interfaces/0compile.xml
   - 0install add 0publish http://0install.net/2006/interfaces/0publish
   - if [ -e 0compile.sh ]; then
