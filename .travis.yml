@@ -1,14 +1,10 @@
 language: c
 dist: trusty
-#addons:
-#  apt:
-#    packages:
-#      - python-gobject
-#      #- zeroinstall-injector
+addons:
+  apt:
+    packages:
+      - python-gobject
 install:
-  #- pip install --upgrade pip
-  #- pip install --user https://download.gnome.org/sources/pygobject/3.24/pygobject-3.24.1.tar.xz
-  #- pip install --user git+https://git.gnome.org/browse/pygobject
   - wget https://downloads.sourceforge.net/project/zero-install/0install/2.12.1/0install-linux-x86_64-2.12.1.tar.bz2;
     tar xf 0install-linux-x86_64-2.12.1.tar.bz2;
     cd 0install-linux-x86_64-2.12.1 && ./install.sh home
