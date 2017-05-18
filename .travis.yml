@@ -27,7 +27,7 @@ script:
     fi
   - if [ -x 0compile.sh ]; then
       eval "$(./0compile.sh)";
-      archive="$(sed -n -e 's/.*<archive.*href=["'"'"']\([^"'"'"']*\)["'"'"'].*/\1/p' "$new_feed")"
+      archive="$(sed -n -e 's/.*<archive.*href=["'"'"']\([^"'"'"']*\)["'"'"'].*/\1/p' "$new_feed")";
     else
       0compile build;
       pub="$(0compile publish .)";
