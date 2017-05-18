@@ -30,6 +30,7 @@ script:
     else
       0compile build;
       pub="$(0compile publish .)";
+      echo "$pub";
       new_feed="$(echo "$pub" | sed -n '2 p')";
       archive="$(echo "$pub" | sed -n 's/^\$ 0launch //p')";
     fi
