@@ -1,9 +1,5 @@
 language: c
 dist: trusty
-addons:
-  apt:
-    packages:
-      - python-gobject
 install:
   - wget https://downloads.sourceforge.net/project/zero-install/0install/2.12.1/0install-linux-x86_64-2.12.1.tar.bz2;
     tar xf 0install-linux-x86_64-2.12.1.tar.bz2;
@@ -11,8 +7,8 @@ install:
   - 0install -c add 0compile http://0install.net/2006/interfaces/0compile.xml
   - 0install -c add 0publish http://0install.net/2006/interfaces/0publish
 script:
-  - git config --global url.ssh://git@github.com/.insteadOf https://github.com/
   - git config --global url.ssh://git@github.com/.insteadOf http://github.com/
+  - git config --global url.ssh://git@github.com/.insteadOf https://github.com/
   - cat ~/.gitconfig
   - git submodule update --remote
   - feed=$(python3 -c 'import configparser;c=configparser.ConfigParser();c.read("0compile.properties");print(c["compile"]["interface"])');
