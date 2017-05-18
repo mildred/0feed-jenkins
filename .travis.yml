@@ -32,8 +32,8 @@ script:
       0compile build;
       pub="$(0compile publish .)";
       echo "$pub";
-      new_feed="$(echo "$pub" | sed -n '2 p')";
-      archive="$(echo "$pub" | sed -n 's/^\$ 0launch //p')";
+      archive="$(echo "$pub" | sed -n '2 p')";
+      new_feed="$(echo "$pub" | sed -n 's/^\$ 0launch //p')";
     fi
   - eval "$(ssh-agent -s)"
   - echo "$GIT_DEPLOY_KEY" | base64 -d | ssh-add -
