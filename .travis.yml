@@ -12,8 +12,8 @@ install:
   - 0install -c add 0publish http://0install.net/2006/interfaces/0publish
 script:
   - git submodule update --remote
-  - pwd;
-    if [ -d 0compile.version/ ]; then
+  - feed=$(python3 -c 'import configparser;c=configparser.ConfigParser();c.read("0compile.properties");print(c["compile"]["interface"])');
+  - if [ -d 0compile.version/ ]; then
       version=$( (cd 0compile.version && git describe --tags --dirty --always | sed "s/^[^0-9]*//") );
     elif [ -x 0compile.version ]; then
       version=$(./0compile.version);
@@ -23,16 +23,16 @@ script:
       version=$(git describe --tags --dirty --always | sed "s/^[^0-9]*//");
     fi
   - if [ -n "$version" ]; then
-      feed=$(python3 -c 'import configparser;c=configparser.ConfigParser();c.read("0compile.properties");print(c["compile"]["interface"])');
       0publish --set-version=$version --select-version=0 $feed;
     fi
   - if [ -x 0compile.sh ]; then
-      ./0compile.sh;
+      archive="$(./0compile.sh)";
     else
-      feed=$(python3 -c 'import configparser;c=configparser.ConfigParser();c.read("0compile.properties");print(c["compile"]["interface"])');
       0compile build;
-      0compile publish --target-feed=${feed}_implem.xml .;
-      0publish -a ${feed}_implem.xml $feed;
+      pub="$(0compile publish .)";
+      new_feed="$(echo "$pub" | sed -n '2 p')";
+      archive="$(echo "$pub" | sed -n 's/^\$ 0launch //p')";
+      0publish -a "${newfeed}" "$feed";
     fi
   - eval "$(ssh-agent -s)"
   - echo "$GIT_DEPLOY_KEY" | base64 -d | ssh-add -
@@ -46,5 +46,7 @@ script:
         git checkout --orphan gh-pages
       )
     fi
-  - ls -l
+  - cp "$archive" gh-pages
+  - (cd gh-pages && git add "$(basename "$archive")")
+  - (cd gh-pages && git commit -m "Release")
   - (cd gh-pages && git push origin gh-pages)
