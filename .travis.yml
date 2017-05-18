@@ -47,7 +47,7 @@ script:
       )
     fi
   - cp "$archive" gh-pages
-  - [ -e "gh-pages/$feed" ] || cp "$feed" "gh-pages/$feed"
+  - if ! [ -e "gh-pages/$feed" ]; then cp "$feed" "gh-pages/$feed"; fi
   - 0publish -a "${newfeed}" "gh-pages/$feed"
   - (cd gh-pages && git add "$(basename "$archive")")
   - (cd gh-pages && git add "$feed")
