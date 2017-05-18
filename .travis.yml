@@ -47,3 +47,4 @@ script:
       )
     fi
   - ls -l
+  - (cd gh-pages && git push origin gh-pages)
