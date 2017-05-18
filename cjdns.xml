@@ -38,7 +38,7 @@
 	 interface file to the directory containing the program.
 	 Usually, you can just leave it as '.'.
     -->
-    <implementation arch="*-src" compile:dup-src="true" id="./cjdns" version="19.1">
+    <implementation arch="*-src" compile:dup-src="true" id="./cjdns" version="0">
       <command name="compile" shell-command="./do &amp;&amp; cp cjdroute $DISTDIR">
         <compile:implementation>
           <command name="run" path="./cjdroute">
