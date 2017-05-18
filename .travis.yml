@@ -51,7 +51,7 @@ script:
   - cat gh-pages/$feed >$feed.old
   - 0publish -a "${new_feed}" "gh-pages/$feed"
   - cat gh-pages/$feed >$feed.new
-  - diff -u $feed.old $feed.new
+  - diff -u $feed.old $feed.new || true
   - (cd gh-pages && git add "$(basename "$archive")")
   - (cd gh-pages && git add "$feed")
   - (cd gh-pages && git commit -m "Release" || true)
