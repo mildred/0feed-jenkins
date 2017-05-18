@@ -27,6 +27,7 @@ script:
     fi
   - if [ -x 0compile.sh ]; then
       eval "$(./0compile.sh)";
+      archive="$(sed -n -e 's/.*<archive.*href=["'"'"']\([^"'"'"']*\)["'"'"'].*/\1/p' "$new_feed")"
     else
       0compile build;
       pub="$(0compile publish .)";
@@ -48,6 +49,8 @@ script:
     fi
   - cp "$archive" gh-pages
   - if ! [ -e "gh-pages/$feed" ]; then cp "$feed" "gh-pages/$feed"; fi
+  - cat gh-pages/$feed
+  - cat $new_feed
   - 0publish -a "${new_feed}" "gh-pages/$feed"
   - (cd gh-pages && git add "$(basename "$archive")")
   - (cd gh-pages && git add "$feed")
