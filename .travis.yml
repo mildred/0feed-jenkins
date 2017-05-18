@@ -35,3 +35,15 @@ script:
       0compile publish --target-feed=${feed}_implem.xml .;
       0publish -a ${feed}_implem.xml $feed;
     fi
+  - echo "$GIT_DEPLOY_KEY" | base64 -d | ssh-add -
+  - git config --global url.ssh://git@github.com/.insteadOf https://github.com/
+  - git config --global url.ssh://git@github.com/.insteadOf http://github.com/
+  - remote_url="$(git config remote.origin.url)";
+    if ! git clone -b gh-pages $remote_url gh-pages; then
+      set -e
+      git clone --no-checkout $remote_url gh-pages
+      ( cd gh-pages
+        git checkout --orphan gh-pages
+      )
+    fi
+  - ls -l
