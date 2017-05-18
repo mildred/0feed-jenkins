@@ -21,13 +21,12 @@ script:
       version=$(cat 0compile.version);
     else
       version=$(git describe --tags --dirty --always | sed "s/^[^0-9]*//");
-    fi;
-    if [ -n "$version" ]; then
+    fi
+  - if [ -n "$version" ]; then
       feed=$(python3 -c 'import configparser;c=configparser.ConfigParser();c.read("0compile.properties");print(c["compile"]["interface"])');
       0publish --set-version=$version --select-version=0 $feed;
     fi
-  - pwd;
-    if [ -x 0compile.sh ]; then
+  - if [ -x 0compile.sh ]; then
       ./0compile.sh;
     else
       feed=$(python3 -c 'import configparser;c=configparser.ConfigParser();c.read("0compile.properties");print(c["compile"]["interface"])');
@@ -35,14 +34,15 @@ script:
       0compile publish --target-feed=${feed}_implem.xml .;
       0publish -a ${feed}_implem.xml $feed;
     fi
+  - eval "$(ssh-agent -s)"
   - echo "$GIT_DEPLOY_KEY" | base64 -d | ssh-add -
   - git config --global url.ssh://git@github.com/.insteadOf https://github.com/
   - git config --global url.ssh://git@github.com/.insteadOf http://github.com/
-  - remote_url="$(git config remote.origin.url)";
-    if ! git clone -b gh-pages $remote_url gh-pages; then
-      set -e
-      git clone --no-checkout $remote_url gh-pages
-      ( cd gh-pages
+  - remote_url="$(git config remote.origin.url)"
+  - if ! git clone -b gh-pages $remote_url gh-pages; then
+      set -e;
+      git clone --no-checkout $remote_url gh-pages;
+      ( cd gh-pages;
         git checkout --orphan gh-pages
       )
     fi
