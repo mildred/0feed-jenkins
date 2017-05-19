@@ -11,12 +11,12 @@ install:
   - 0install -c add 0compile http://0install.net/2006/interfaces/0compile.xml
   - 0install -c add 0publish http://0install.net/2006/interfaces/0publish
 script:
-  - ls -l ~/.gnupg
-  - gpg --version
-  - gpg-agent -vv --allow-preset-passphrase --no-detach
   - eval "$(ssh-agent -s)"
-  - echo "$GPG_PASSPHRASE" | python2 -c 'import sys, binascii; sys.stdout.write(binascii.b2a_hex(sys.stdin.read().strip()))' | xargs printf "PRESET_PASSPHRASE $GPG_KEY_ID -1 %s\n" | gpg-connect-agent
-  - gpg --batch --import "$GPG_KEY_ID.skey"
+  - gpg --version
+  #- gpg-agent -vv --allow-preset-passphrase --no-detach
+  #- echo "$GPG_PASSPHRASE" | python2 -c 'import sys, binascii; sys.stdout.write(binascii.b2a_hex(sys.stdin.read().strip()))' | xargs printf "PRESET_PASSPHRASE $GPG_KEY_ID -1 %s\n" | gpg-connect-agent
+  - gpg --passphrase-file passphrase --batch --import "$GPG_KEY_ID.skey"
+  - (umask 0077 && echo "$GPG_PASSPHRASE" >passphrase)
   - unset GPG_PASSPHRASE
   - git submodule update --remote
   - git config --global url.ssh://git@github.com/.insteadOf http://github.com/
@@ -60,8 +60,10 @@ script:
   - cat gh-pages/$feed >$feed.old
   - sed -i '/<implementation .*version=["'"'"']'"$version"'["'"'"']/,/<\/implementation>/ d' "gh-pages/$feed"
   - 0publish -a "${new_feed}" "gh-pages/$feed"
-  - 0publish --xmlsign -k $GPG_KEY_ID "gh-pages/$feed"
-  - gpg --armor --output gh-pages/$GPG_KEY_ID.key --export $GPG_KEY_ID
+  #- 0publish --xmlsign -k $GPG_KEY_ID "gh-pages/$feed"
+  - gpg --passphrase-file passphrase --batch --default-key $GPG_KEY_ID --sign --detach-sign --output "gh-pages/$feed.sig" "gh-pages/$feed"
+  - printf "<!-- Base64 Signature\n%s\n-->\n" $(cat "gh-pages/$feed.sig") >> "gh-pages/$feed"
+  - gpg --passphrase-file passphrase --batch --armor --output gh-pages/$GPG_KEY_ID.key --export $GPG_KEY_ID
   - cat gh-pages/$feed >$feed.new
   - diff -u $feed.old $feed.new || true
   - (cd gh-pages && git add "$(basename "$archive")")
