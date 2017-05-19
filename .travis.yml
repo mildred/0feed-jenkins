@@ -11,10 +11,10 @@ install:
   - 0install -c add 0compile http://0install.net/2006/interfaces/0compile.xml
   - 0install -c add 0publish http://0install.net/2006/interfaces/0publish
 script:
+  - git submodule update --remote
   - git config --global url.ssh://git@github.com/.insteadOf http://github.com/
   - git config --global url.ssh://git@github.com/.insteadOf https://github.com/
   - cat ~/.gitconfig
-  - git submodule update --remote
   - feed=$(python3 -c 'import configparser;c=configparser.ConfigParser();c.read("0compile.properties");print(c["compile"]["interface"])');
   - if [ -d 0compile.version/ ]; then
       version=$( (cd 0compile.version && git describe --tags --dirty --always | sed "s/^[^0-9]*//") );
@@ -41,8 +41,6 @@ script:
   - eval "$(ssh-agent -s)"
   - echo "$GIT_DEPLOY_KEY" | base64 -d | ssh-add -
   - remote_url="$(git config remote.origin.url)"
-  - remote_url="${remote_url%/}"
-  - remote_url="git@github.com:${remote_url#*github.com/}"
   - if ! git clone -b gh-pages $remote_url gh-pages; then
       set -e;
       git clone --no-checkout $remote_url gh-pages;
@@ -60,4 +58,5 @@ script:
   - (cd gh-pages && git add "$(basename "$archive")")
   - (cd gh-pages && git add "$feed")
   - (cd gh-pages && git commit -m "Release" || true)
+after_success:
   - (cd gh-pages && git push origin gh-pages)
