@@ -38,6 +38,7 @@ script:
       cp "$feed" "gh-pages/$feed";
       0publish -a "$feed.old" "gh-pages/$feed";
     else
+      touch $feed.old;
       cp "$feed" "gh-pages/$feed";
     fi
   - if [ -d 0compile.version/ ]; then
