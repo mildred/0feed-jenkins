@@ -1,6 +1,9 @@
 <?xml version="1.0" ?>
 <?xml-stylesheet type='text/xsl' href='interface.xsl'?>
-<interface xmlns="http://zero-install.sourceforge.net/2004/injector/interface" xmlns:compile="http://zero-install.sourceforge.net/2006/namespaces/0compile">
+<interface
+  xmlns="http://zero-install.sourceforge.net/2004/injector/interface"
+  xmlns:compile="http://zero-install.sourceforge.net/2006/namespaces/0compile"
+  uri="http://mildred.github.io/0feed-cjdns/cjdns.xml">
   <name>cjdns</name>
   <summary>cures all ills</summary>
   <description>

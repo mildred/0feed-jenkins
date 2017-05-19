@@ -33,7 +33,13 @@ script:
         git rm -rf .
       )
     fi
-  - if ! [ -e "gh-pages/$feed" ]; then cp "$feed" "gh-pages/$feed"; fi
+  - if [ -e gh-pages/$feed ]; then
+      mv gh-pages/$feed $feed.old;
+      cp "$feed" "gh-pages/$feed";
+      0publish -a "$feed.old" "gh-pages/$feed";
+    else
+      cp "$feed" "gh-pages/$feed";
+    fi
   - if [ -d 0compile.version/ ]; then
       version=$( (cd 0compile.version && git describe --tags --dirty --always | sed "s/^[^0-9]*//") );
     elif [ -x 0compile.version ]; then
@@ -57,7 +63,6 @@ script:
       new_feed="$(echo "$pub" | sed -n 's/^\$ 0launch //p')";
     fi
   - cp "$archive" gh-pages
-  - cat gh-pages/$feed >$feed.old
   - sed -i '/<implementation .*version=["'"'"']'"$version"'["'"'"']/,/<\/implementation>/ d' "gh-pages/$feed"
   - sed -i '/^<!-- Base64 Signature/,/^-->/ d' "gh-pages/$feed"
   - 0publish -a "${new_feed}" "gh-pages/$feed"
