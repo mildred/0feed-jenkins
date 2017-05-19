@@ -16,6 +16,18 @@ script:
   - git config --global url.ssh://git@github.com/.insteadOf https://github.com/
   - cat ~/.gitconfig
   - feed=$(python3 -c 'import configparser;c=configparser.ConfigParser();c.read("0compile.properties");print(c["compile"]["interface"])');
+  - eval "$(ssh-agent -s)"
+  - echo "$GIT_DEPLOY_KEY" | base64 -d | ssh-add -
+  - remote_url="$(git config remote.origin.url)"
+  - if ! git clone -b gh-pages $remote_url gh-pages; then
+      set -e;
+      git clone --no-checkout $remote_url gh-pages;
+      ( cd gh-pages;
+        git checkout --orphan gh-pages;
+        git rm -rf .
+      )
+    fi
+  - if ! [ -e "gh-pages/$feed" ]; then cp "$feed" "gh-pages/$feed"; fi
   - if [ -d 0compile.version/ ]; then
       version=$( (cd 0compile.version && git describe --tags --dirty --always | sed "s/^[^0-9]*//") );
     elif [ -x 0compile.version ]; then
@@ -38,20 +50,9 @@ script:
       archive="$(echo "$pub" | sed -n '2 p')";
       new_feed="$(echo "$pub" | sed -n 's/^\$ 0launch //p')";
     fi
-  - eval "$(ssh-agent -s)"
-  - echo "$GIT_DEPLOY_KEY" | base64 -d | ssh-add -
-  - remote_url="$(git config remote.origin.url)"
-  - if ! git clone -b gh-pages $remote_url gh-pages; then
-      set -e;
-      git clone --no-checkout $remote_url gh-pages;
-      ( cd gh-pages;
-        git checkout --orphan gh-pages;
-        git rm -rf .
-      )
-    fi
   - cp "$archive" gh-pages
-  - if ! [ -e "gh-pages/$feed" ]; then cp "$feed" "gh-pages/$feed"; fi
   - cat gh-pages/$feed >$feed.old
+  - sed -i '/<implementation .*version=["'"'"']'"$version"'["'"'"']/,/<\/implementation>/ d' "gh-pages/$feed"
   - 0publish -a "${new_feed}" "gh-pages/$feed"
   - cat gh-pages/$feed >$feed.new
   - diff -u $feed.old $feed.new || true
