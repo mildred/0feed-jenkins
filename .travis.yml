@@ -64,11 +64,11 @@ script:
   #- 0publish --xmlsign -k $GPG_KEY_ID "gh-pages/$feed"
   - gpg --passphrase-file passphrase --batch --default-key $GPG_KEY_ID --sign --detach-sign --output "gh-pages/$feed.sig" "gh-pages/$feed"
   - printf "<!-- Base64 Signature\n%s\n-->\n" $(base64 -w0 <"gh-pages/$feed.sig") >> "gh-pages/$feed"
-  - gpg --passphrase-file passphrase --batch --armor --output gh-pages/$GPG_KEY_ID.key --export $GPG_KEY_ID || true
+  - gpg --passphrase-file passphrase --batch --armor --output gh-pages/$GPG_KEY_ID.gpg --export $GPG_KEY_ID || true
   - cat gh-pages/$feed >$feed.new
   - diff -u $feed.old $feed.new || true
   - (cd gh-pages && git add "$(basename "$archive")")
-  - (cd gh-pages && git add "$feed" "$GPG_KEY_ID.key")
+  - (cd gh-pages && git add "$feed" "$GPG_KEY_ID.gpg")
   - (cd gh-pages && git commit -m "Release" || true)
 after_success:
   - (cd gh-pages && git push origin gh-pages)
