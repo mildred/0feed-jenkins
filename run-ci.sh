@@ -2,6 +2,7 @@
 
 title(){
   local tmpl="$1"
+  shift
   printf "\e[1;37m==> $tmpl\e[0m\n" "$@"
 }
 
@@ -45,11 +46,11 @@ if [ -n "$version" ]; then
 fi
 
 if [ -x 0compile.sh ]; then
-  titme "Run 0compile.sh"
+  title "Run 0compile.sh"
   eval "$(./0compile.sh)";
   archive="$(sed -n -e 's/.*<archive.*href=["'"'"']\([^"'"'"']*\)["'"'"'].*/\1/p' "$new_feed")";
 else
-  titme "Run 0compile build"
+  title "Run 0compile build"
   0compile build;
   uri="$(sed -n -e 's/.*uri=["'"'"']\([^"'"'"']*\)["'"'"'].*/\1/p' "$feed" | head -n 1)";
   pub="$(0compile publish "${uri%/*}/")";
