@@ -8,10 +8,10 @@ title(){
 set -e
 
 feed="$(python3 <<EOF
-  import configparser
-  c=configparser.ConfigParser()
-  c.read("0compile.properties")
-  print(c["compile"]["interface"])
+import configparser
+c=configparser.ConfigParser()
+c.read("0compile.properties")
+print(c["compile"]["interface"])
 EOF
 )"
 
