@@ -36,8 +36,6 @@ script:
   - if [ -e gh-pages/$feed ]; then
       mv gh-pages/$feed $feed.old;
       cp "$feed" "gh-pages/$feed";
-      : TODO: report gh-pages implementations
-      : 0publish -a "$feed.old" "gh-pages/$feed";
     else
       touch $feed.old;
       cp "$feed" "gh-pages/$feed";
