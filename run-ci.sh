@@ -59,7 +59,10 @@ else
   new_feed="$(echo "$pub" | sed -n 's/^\$ 0launch //p')";
 fi
 
+title "Copy %s" "$(basename "$archive")"
 cp "$(basename "$archive")" gh-pages
+
+title "Prepare and sign feed %s" "$feed"
 sed -i '/<implementation .*version=["'"'"']'"$version"'["'"'"']/,/<\/implementation>/ d' "gh-pages/$feed"
 sed -i '/^<!-- Base64 Signature/,/^-->/ d' "gh-pages/$feed"
 0publish -a "${new_feed}" "gh-pages/$feed"
@@ -69,6 +72,8 @@ printf "<!-- Base64 Signature\n%s\n-->\n" $(base64 -w0 <"gh-pages/$feed.sig") >>
 gpg --passphrase-file passphrase --batch --armor --output gh-pages/$GPG_KEY_ID.gpg --export $GPG_KEY_ID || true
 cat gh-pages/$feed >$feed.new
 diff -u $feed.old $feed.new || true
+
+title "Commit release"
 (cd gh-pages && git add "$(basename "$archive")")
 (cd gh-pages && git add "$feed" "$GPG_KEY_ID.gpg")
 (cd gh-pages && git commit -m "Release $version" || true)
