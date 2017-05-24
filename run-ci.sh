@@ -59,6 +59,11 @@ else
   new_feed="$(echo "$pub" | sed -n 's/^\$ 0launch //p')";
 fi
 
+if [ -e "gh-pages/$(basename "$archive")" ]; then
+  title "Artifact %s already exists, cancel build" "$(basename "$archive")"
+  exit 0
+fi
+
 title "Copy %s" "$(basename "$archive")"
 cp "$(basename "$archive")" gh-pages
 
