@@ -59,7 +59,7 @@ else
   new_feed="$(echo "$pub" | sed -n 's/^\$ 0launch //p')";
 fi
 
-cp "$archive" gh-pages
+cp "$(basename "$archive")" gh-pages
 sed -i '/<implementation .*version=["'"'"']'"$version"'["'"'"']/,/<\/implementation>/ d' "gh-pages/$feed"
 sed -i '/^<!-- Base64 Signature/,/^-->/ d' "gh-pages/$feed"
 0publish -a "${new_feed}" "gh-pages/$feed"
