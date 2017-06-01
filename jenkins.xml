@@ -44,10 +44,11 @@
     <implementation arch="*-src" id="jenkins" local-path="." version="2.63">
       <command name="compile" shell-command="cp $SRCDIR/jenkins.war $DISTDIR">
         <compile:implementation>
-          <command name="run" path="java -jar jenkins.war"/>
-          <requires interface="http://repo.roscidus.com/java/openjdk-jre">
-            <environment name='PATH' insert='bin'/>
-          </requires>
+          <command name="run" path="jenkins.war">
+            <runner interface="http://repo.roscidus.com/java/openjdk-8-jre">
+              <arg>-jar</arg>
+            </runner>
+          </command>
         </compile:implementation>
       </command>
     </implementation>
