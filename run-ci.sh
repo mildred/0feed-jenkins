@@ -29,6 +29,7 @@ else
   cp "$feed" "gh-pages/$feed";
 fi
 
+cat "gh-pages/$feed"
 
 if [ -d 0compile.version/ ]; then
   version=$( (cd 0compile.version && git describe --tags --dirty --always | sed "s/^[^0-9]*//") );
