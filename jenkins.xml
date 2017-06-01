@@ -3,7 +3,7 @@
 <interface
   xmlns="http://zero-install.sourceforge.net/2004/injector/interface"
   xmlns:compile="http://zero-install.sourceforge.net/2006/namespaces/0compile"
-  uri="http://mildred.github.io/0feed-cjdns/jenkins.xml">
+  uri="http://mildred.github.io/0feed-jenkins/jenkins.xml">
   <name>jenkins</name>
   <summary>cures all ills</summary>
   <description>
