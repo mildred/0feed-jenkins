@@ -8,6 +8,7 @@ title(){
 
 set -e
 
+# TODO: feed=$(0compile info compile.interface)
 feed="$(python3 <<EOF
 import configparser
 c=configparser.ConfigParser()
@@ -22,6 +23,7 @@ if [ -e gh-pages/$feed ]; then
   mv gh-pages/$feed $feed.old;
   cp "$feed" "gh-pages/$feed";
   # TODO: report old interfaces to new feed
+  # TODO: 0publish --ignore-duplicates -a "$feed.old" "gh-pages/$feed"
 else
   touch $feed.old;
   cp "$feed" "gh-pages/$feed";
@@ -42,6 +44,7 @@ fi
 title "Build version is %s" "$version"
 
 if [ -n "$version" ]; then
+  # TODO: 0publish --set-version=$version --select-source $feed
   0publish --set-version=$version --select-version=0 $feed;
 fi
 
@@ -54,6 +57,9 @@ else
   0compile build;
   uri="$(sed -n -e 's/.*uri=["'"'"']\([^"'"'"']*\)["'"'"'].*/\1/p' "$feed" | head -n 1)";
   pub="$(0compile publish "${uri%/*}/")";
+  # TODO: detect uri basename
+  # TODO: allow to set version
+  # TODO: 0compile publish --target-file=$feed.new --set-version="$version" --out-dir="gh-pages"
   echo "$pub";
   archive="$(echo "$pub" | sed -n '2 p')";
   new_feed="$(echo "$pub" | sed -n 's/^\$ 0launch //p')";

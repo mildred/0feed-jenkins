@@ -3,8 +3,8 @@
 <interface
   xmlns="http://zero-install.sourceforge.net/2004/injector/interface"
   xmlns:compile="http://zero-install.sourceforge.net/2006/namespaces/0compile"
-  uri="http://mildred.github.io/0feed-cjdns/cjdns.xml">
-  <name>cjdns</name>
+  uri="http://mildred.github.io/0feed-cjdns/jenkins.xml">
+  <name>jenkins</name>
   <summary>cures all ills</summary>
   <description>
     A longer, multi-line description of the behaviour of the
@@ -28,7 +28,7 @@
   <!-- Set 'main' to the relative path of your default
         executable within the implementation's directory.
 	E.g.: "myprog" or "bin/myprog" -->
-  <group main="cjdns">
+  <group main="jenkins">
     <!-- List any libraries your program needs here -->
     <!--
     <requires interface="http://site/library">
@@ -41,12 +41,14 @@
 	 interface file to the directory containing the program.
 	 Usually, you can just leave it as '.'.
     -->
-    <implementation arch="*-src" compile:dup-src="true" id="./cjdns" version="0">
-      <command name="compile" shell-command="./do &amp;&amp; cp cjdroute $DISTDIR">
+    <implementation arch="*-src" compile:dup-src="true" id="jenkins" local-path="." version="2.63">
+      <command name="compile" shell-command="cp $SRCDIR/jenkins.war $DISTDIR">
         <compile:implementation>
-          <command name="run" path="./cjdroute">
-          </command>
-      	</compile:implementation>
+          <command name="run" path="java -jar jenkins.war"/>
+          <requires interface="http://repo.roscidus.com/java/openjdk-jre">
+            <environment name='PATH' insert='bin'/>
+          </requires>
+        </compile:implementation>
       </command>
     </implementation>
   </group>
