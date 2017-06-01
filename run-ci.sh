@@ -45,7 +45,7 @@ title "Build version is %s" "$version"
 
 if [ -n "$version" ]; then
   # TODO: 0publish --set-version=$version --select-source $feed
-  0publish --set-version=$version --select-version=0 $feed;
+  0publish --set-version=$version $feed;
 fi
 
 if [ -x 0compile.sh ]; then

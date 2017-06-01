@@ -41,7 +41,7 @@
 	 interface file to the directory containing the program.
 	 Usually, you can just leave it as '.'.
     -->
-    <implementation arch="*-src" compile:dup-src="false" id="jenkins" local-path="." version="0">
+    <implementation arch="*-src" compile:dup-src="false" id="jenkins" local-path="." version="2.63">
       <command name="compile" shell-command="cp $SRCDIR/jenkins.war $DISTDIR">
         <compile:implementation>
           <command name="run" path="java -jar jenkins.war"/>
