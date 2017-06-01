@@ -45,7 +45,7 @@
       <command name="compile" shell-command="cp $SRCDIR/jenkins.war $DISTDIR">
         <compile:implementation>
           <command name="run" path="jenkins.war">
-            <runner interface="http://repo.roscidus.com/java/openjdk-8-jre">
+            <runner interface="http://repo.roscidus.com/java/openjdk-jre">
               <arg>-jar</arg>
             </runner>
           </command>
