@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type='text/xsl' href='interface.xsl'?>
+<interface uri="http://mildred.github.io/0feed-jenkins/jenkins.xml" xmlns="http://zero-install.sourceforge.net/2004/injector/interface" xmlns:compile="http://zero-install.sourceforge.net/2006/namespaces/0compile">
+  <name>jenkins</name>
+  <summary>cures all ills</summary>
+  <description>
+    A longer, multi-line description of the behaviour of the
+    program goes here. State clearly what the program is for
+    (clearly enough that people who don't want it will
+    realise too).
+
+    Use a blank line to separate paragraphs.
+  </description>
+
+  <!-- Optionally, uncomment this to specify the program's homepage: -->
+  <!-- <homepage>http://site/prog</homepage> -->
+
+  <!-- Optionally, uncomment this to specify an icon: -->
+  <!-- <icon href='http://site/icon.png' type='image/png'/> -->
+
+  <!-- Optionally, uncomment this to give the address of
+       the signed master interface: -->
+  <!-- <feed-for interface='http://site/interface'/> -->
+
+  <!-- Set 'main' to the relative path of your default
+        executable within the implementation's directory.
+        E.g.: "myprog" or "bin/myprog" -->
+  <group main="jenkins">
+    <!-- List any libraries your program needs here -->
+    <!--
+    <requires interface="http://site/library">
+      <environment insert="python" name="PYTHONPATH"/>
+    </requires>
+    -->
+
+    <!-- List all implementations here.
+         For local interfaces, '.' is a relative path from this
+         interface file to the directory containing the program.
+         Usually, you can just leave it as '.'.
+    -->
+  </group>
+  <group>
+    <command name="run" path="jenkins.war">
+      <runner interface="http://mildred.github.io/0feed-jenkins/openjdk-jre.xml">
+        <arg>-jar</arg>
+      </runner>
+    </command>
+    <implementation arch="*-*" id="sha1new=7b4becf3cb162b1ef22e484c7a39ee3a86d881d4" released="2017-06-03" version="2.63">
+      <manifest-digest sha256new="4B77W3744V5CX5DFMSJMHJHHTWAJAGXR5RSAYCMZUD4DJG5J3UNA"/>
+      <file dest="java" href="http://mirrors.jenkins.io/war/2.63/jenkins.war" size="71195138"/>
+    </implementation>
+  </group>
+</interface>
+<!-- Base64 Signature
+iQEcBAABAgAGBQJZMt9iAAoJENVgVG6hbR05QdYIALodKbYuxMRMSkOExihenM6Ypd0DjG/4L4rMNiyYMlnGaf97NU2qvHYWl1sNkL5oGZX3K9u07ptvCHpBcgiTiOKzRraSa0AXrfMMG0EibCmiX/+gzTT63RV+/U02q8FugNMU/1KlO7eGfTF6Wv14zdfXnYRKDk1o3cDb8tOfCNe4Cq0HUmeobldUOc675LxgtGA5axJcXVLSZuBcagWJQLkJAHxWzynx4/wPXCV/Fsb5+XR7MpobP8mVIXAINtpuMBuO+aPttQ7alVHufurZ4tB4W4RR8ncQFArLC0yzPDEmM3vfjQsTbLx7eLSGbSoBGvO/Cn5sjqa3eGvc3VnK+4A=
+-->
