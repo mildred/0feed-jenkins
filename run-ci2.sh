@@ -53,9 +53,6 @@ gpg --passphrase-file passphrase --batch --armor --output gh-pages/$GPG_KEY_ID.g
 cat gh-pages/$feed >$feed.new
 diff -u $feed.old $feed.new || true
 
-exit 0
-
 title "Commit release"
-(cd gh-pages && git add "$(basename "$archive")")
 (cd gh-pages && git add "$feed" "$GPG_KEY_ID.gpg")
 (cd gh-pages && git commit -m "Release $version" || true)
