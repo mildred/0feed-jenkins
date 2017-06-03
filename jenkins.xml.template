@@ -23,7 +23,7 @@
     </command>
     <implementation arch="*-*" version="{version}">
       <manifest-digest/>
-      <file href="http://mirrors.jenkins.io/war/{version}/jenkins.war" dest="java"/>
+      <file href="http://mirrors.jenkins.io/war/{version}/jenkins.war" dest="jenkins.war"/>
     </implementation>
   </group>
 </interface>
