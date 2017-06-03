@@ -32,7 +32,6 @@ fi
 
 url=http://mirrors.jenkins.io/war/
 version="$(lftp -c "open $url; cls" | sed -n 's:^\([0-9\.]*\)/$:\1:p' | sort -V | tail -n 1)"
-lftp -c "get $url/$version/jenkins.war" >&2
 
 title "Build version is %s" "$version"
 
