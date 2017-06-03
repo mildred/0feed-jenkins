@@ -54,5 +54,6 @@ cat gh-pages/$feed >$feed.new
 diff -u $feed.old $feed.new || true
 
 title "Commit release"
-(cd gh-pages && git add "$feed" "$GPG_KEY_ID.gpg")
+cp feed.css interface.xsl gh-pages
+(cd gh-pages && git add "$feed" "$GPG_KEY_ID.gpg" feed.css interface.xsl)
 (cd gh-pages && git commit -m "Release $version" || true)
