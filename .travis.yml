@@ -35,5 +35,6 @@ script:
       )
     fi
   - bash run-ci.sh
+  - bash run-ci2.sh
 after_success:
   - (cd gh-pages && git push origin gh-pages)
