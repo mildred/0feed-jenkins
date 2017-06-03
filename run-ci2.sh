@@ -20,7 +20,7 @@ EOF
 title "Build using feed %s" "$feed"
 
 if [ -e gh-pages/$feed ]; then
-  #mv gh-pages/$feed $feed.old;
+  mv gh-pages/$feed $feed.old;
   cp "$feed" "gh-pages/$feed";
   # TODO: report old interfaces to new feed
   # TODO: 0publish --ignore-duplicates -a "$feed.old" "gh-pages/$feed"
