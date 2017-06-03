@@ -1,0 +1,92 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type='text/xsl' href='interface.xsl'?>
+<interface uri="http://mildred.github.io/0feed-jenkins/openjdk-jre.xml" xmlns="http://zero-install.sourceforge.net/2004/injector/interface">
+  <name>openjdk-jre</name>
+  <summary>OpenJDK Java runtime</summary>
+  <description>
+    The package was built by the Debian project using the IcedTea build support and
+    patches from the IcedTea project and then repackaged for Zero Install.</description>
+
+  <feed arch="Windows-*" src="http://0install.de/feeds/Oracle_JRE.xml"/>
+
+  <group>
+    <!-- There is a seperate GUI version of the Java executable on Windows. On POSIX systems we simply map it back to regular Java. -->
+    <command name="run-gui">
+      <runner interface="http://repo.roscidus.com/java/openjdk-jre"/>
+    </command>
+
+    <!-- Note: 0install >= 1.11 will fill in the correct main value automatically. -->
+    <package-implementation distributions="Debian" main="/usr/bin/java" package="openjdk-7-jre"/>
+    <package-implementation distributions="Debian" main="/usr/bin/java" package="openjdk-8-jre"/>
+    <package-implementation distributions="RPM" main="/usr/bin/java" package="java-1_7_0-openjdk"/>
+    <package-implementation distributions="RPM" main="/usr/bin/java" package="java-1.7.0-openjdk"/>
+    <package-implementation distributions="RPM" main="/usr/bin/java" package="java-1.8.0-openjdk"/>
+    <package-implementation distributions="Arch" main="/usr/bin/java" package="jre7-openjdk"/>
+    <package-implementation distributions="Arch" main="/usr/bin/java" package="jre8-openjdk"/>
+
+    <package-implementation distributions="Darwin" package="openjdk-7-jre"/>
+    <package-implementation distributions="Darwin" package="openjdk-8-jre"/>
+  </group>
+
+  <package-implementation distributions="Windows" package="openjdk-7-jre"/>
+  <package-implementation distributions="Windows" package="openjdk-8-jre"/>
+
+  <entry-point binary-name="java" command="run">
+    <needs-terminal/>
+    <name>Java command-line runner</name>
+  </entry-point>
+  <entry-point command="run-gui">
+    <name>Java GUI runner</name>
+  </entry-point>
+  <entry-point command="javaws">
+    <name>Java Web Start</name>
+  </entry-point>
+  <entry-point command="java-rmi">
+    <needs-terminal/>
+    <name>Java Remote Method Invocation</name>
+  </entry-point>
+  <entry-point command="javacpl">
+    <name>Java Control Panel</name>
+  </entry-point>
+  <entry-point binary-name="policytool" command="policytool">
+    <name>Policy Tool</name>
+  </entry-point>
+  <entry-point binary-name="servertool" command="servertool">
+    <needs-terminal/>
+    <name>Java IDL Server Tool</name>
+  </entry-point>
+  <entry-point binary-name="keytool" command="keytool">
+    <needs-terminal/>
+    <name>Key and Certificate Management Tool</name>
+  </entry-point>
+  <entry-point binary-name="pak200" command="pak200">
+    <needs-terminal/>
+  </entry-point>
+  <entry-point binary-name="unpak200" command="unpak200">
+    <needs-terminal/>
+  </entry-point>
+
+  <capabilities xmlns="http://0install.de/schema/desktop-integration/capabilities">
+    <file-type id="jarfile">
+      <description>Executable Jar File</description>
+      <verb args="-jar &quot;%1&quot; %*" command="run-gui" name="open"/>
+      <extension value=".jar"/>
+    </file-type>
+    <file-type id="JNLPFile">
+      <description>JNLP File</description>
+      <verb args="&quot;%1&quot;" command="javaws" name="Open">
+        <description>&amp;Launch</description>
+      </verb>
+      <extension mime-type="application/x-java-jnlp-file" value=".jnlp"/>
+    </file-type>
+  </capabilities>
+</interface>
+<!-- Base64 Signature
+iQEcBAABAgAGBQJZMI7jAAoJENVgVG6hbR05+PAIAJkdmjaxKp3iZ/M17YHMMYI7L4b/YXxbt5rN
+HkSgkGz9DxGWtXx90579zJbdLguLmfh/kcUtMvDWLhUccHMed+DyPr9/a96m662sxzjFRK7ks54B
+fvUE09vhLNnjLmynVClx1ywf8ofwJpL8ILbdtQtp71QW8q81grAOfPTw9vp9mzpmnbvPoyrfjCqM
+P+V4AllLiQw2mJmLpiE7z61M6huNbRlfvOjdLP6PPngIrFh2VNLdk3ZFkPZ8/Dmmb/0pdSm89sZl
+SoPifgODwcF8U4Ph67qYzAWF3APgYyUiy0wEngyHWU2vMRcbXV/DMkLYutFwpNvO8TJ7sWRfEBqF
+Nlg=
+
+-->
