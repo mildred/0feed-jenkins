@@ -45,12 +45,12 @@
         <arg>-jar</arg>
       </runner>
     </command>
-    <implementation arch="*-*" id="sha1new=7b4becf3cb162b1ef22e484c7a39ee3a86d881d4" released="2017-06-03" version="2.63">
-      <manifest-digest sha256new="4B77W3744V5CX5DFMSJMHJHHTWAJAGXR5RSAYCMZUD4DJG5J3UNA"/>
-      <file dest="java" href="http://mirrors.jenkins.io/war/2.63/jenkins.war" size="71195138"/>
+    <implementation arch="*-*" id="sha1new=0564bef3eaab6624fb863571073d9e9f9f910e78" released="2017-06-03" version="2.63">
+      <manifest-digest sha256new="SZYIW2GHKMGG52P4PLPROLW5BIKYSVSM5ES2JPOVUIRGXHJTNNBA"/>
+      <file dest="jenkins.war" href="http://mirrors.jenkins.io/war/2.63/jenkins.war" size="71195138"/>
     </implementation>
   </group>
 </interface>
 <!-- Base64 Signature
-iQEcBAABAgAGBQJZMt9iAAoJENVgVG6hbR05QdYIALodKbYuxMRMSkOExihenM6Ypd0DjG/4L4rMNiyYMlnGaf97NU2qvHYWl1sNkL5oGZX3K9u07ptvCHpBcgiTiOKzRraSa0AXrfMMG0EibCmiX/+gzTT63RV+/U02q8FugNMU/1KlO7eGfTF6Wv14zdfXnYRKDk1o3cDb8tOfCNe4Cq0HUmeobldUOc675LxgtGA5axJcXVLSZuBcagWJQLkJAHxWzynx4/wPXCV/Fsb5+XR7MpobP8mVIXAINtpuMBuO+aPttQ7alVHufurZ4tB4W4RR8ncQFArLC0yzPDEmM3vfjQsTbLx7eLSGbSoBGvO/Cn5sjqa3eGvc3VnK+4A=
+iQEcBAABAgAGBQJZMuFzAAoJENVgVG6hbR0512IH/ja9nMpLqahZd9MUJ5EpDRb0RxLWbfH3446/pkKsKRgPqVr5excJu3gvQTYnTRPFXsgc3f/qlJKwEF56dYCseEwIa7l65kHUVuZkGoNXQXklM0LG+JkHi5f82evvro1kHm9Tbw1fKM8yk+vnuIDwYdLLaVvXIfP9mxGUYXP+9B1UM2HJkwFPbICRMMWxnOetC0xxzk518bZAM6MX89QM+jY1YhN/d4WrfZzo/CTv0snYoNu2t1O3lNLWX+gS/w3EWX780dT2okNgcxKH5+92A+11lcg4vhq9pfyCJzIpCrXH5Mvc/WgsglKcHT/LtWLi8dprtFMbnk2zvyG/tunEzUY=
 -->
