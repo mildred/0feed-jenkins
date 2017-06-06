@@ -5,52 +5,6 @@
   xmlns:compile="http://zero-install.sourceforge.net/2006/namespaces/0compile"
   uri="http://mildred.github.io/0feed-jenkins/jenkins.xml">
   <name>jenkins</name>
-  <summary>cures all ills</summary>
-  <description>
-    A longer, multi-line description of the behaviour of the
-    program goes here. State clearly what the program is for
-    (clearly enough that people who don't want it will
-    realise too).
-
-    Use a blank line to separate paragraphs.
-  </description>
-
-  <!-- Optionally, uncomment this to specify the program's homepage: -->
-  <!-- <homepage>http://site/prog</homepage> -->
-
-  <!-- Optionally, uncomment this to specify an icon: -->
-  <!-- <icon href='http://site/icon.png' type='image/png'/> -->
-
-  <!-- Optionally, uncomment this to give the address of
-       the signed master interface: -->
-  <!-- <feed-for interface='http://site/interface'/> -->
-
-  <!-- Set 'main' to the relative path of your default
-        executable within the implementation's directory.
-        E.g.: "myprog" or "bin/myprog" -->
-  <group main="jenkins">
-    <!-- List any libraries your program needs here -->
-    <!--
-    <requires interface="http://site/library">
-      <environment insert="python" name="PYTHONPATH"/>
-    </requires>
-    -->
-
-    <!-- List all implementations here.
-         For local interfaces, '.' is a relative path from this
-         interface file to the directory containing the program.
-         Usually, you can just leave it as '.'.
-    -->
-    <implementation arch="*-src" id="." local-path="." version="0">
-      <command name="compile" shell-command="cp $SRCDIR/jenkins.war $DISTDIR">
-        <compile:implementation>
-          <command name="run" path="jenkins.war">
-            <runner interface="http://mildred.github.io/0feed-jenkins/openjdk-jre.xml">
-              <arg>-jar</arg>
-            </runner>
-          </command>
-        </compile:implementation>
-      </command>
-    </implementation>
-  </group>
+  <summary>Jenkins continuous integration</summary>
+  <description></description>
 </interface>
