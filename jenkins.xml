@@ -38,7 +38,7 @@
          interface file to the directory containing the program.
          Usually, you can just leave it as '.'.
     -->
-    <implementation arch="*-src" id="." local-path="." version="2.63">
+    <implementation arch="*-src" id="." local-path="." version="0">
       <command name="compile" shell-command="cp $SRCDIR/jenkins.war $DISTDIR">
         <compile:implementation>
           <command name="run" path="jenkins.war">
@@ -56,13 +56,12 @@
         <arg>-jar</arg>
       </runner>
     </command>
-    <implementation arch="*-*" id="sha1new=0564bef3eaab6624fb863571073d9e9f9f910e78" released="2017-06-03" version="2.63">
-      <manifest-digest sha256new="SZYIW2GHKMGG52P4PLPROLW5BIKYSVSM5ES2JPOVUIRGXHJTNNBA"/>
-      <file dest="jenkins.war" href="http://mirrors.jenkins.io/war/2.63/jenkins.war" size="71195138"/>
-    </implementation>
     <implementation arch="*-*" id="sha1new=2c1fbadc4917e3533f23275baf63352a72bd158a" released="2017-06-06" version="2.64">
       <manifest-digest sha256new="VDJRRIR6CJMNUCJHYSGBDOCMH4UEN5T3D7ZWQ6ABIOFFCJFNSMOA"/>
       <file dest="jenkins.war" href="http://mirrors.jenkins.io/war/2.64/jenkins.war" size="71614221"/>
     </implementation>
   </group>
 </interface>
+<!-- Base64 Signature
+iQEcBAABAgAGBQJZNyGDAAoJENVgVG6hbR05qFMH/3Naq0UIZnM+yQgSTXihGAw0iw4tsWW9oYGdT069hhPSg4jFYo24lFI4dK4gMcEVVqr/IkS1lrp1/am46lVonnaHd7pJlyo8AUmoX4e3xCFVWTZWafUxRq6/h9w+4R6iVo9hC9uFw7XTp48mw19q9K49TPVV+NcYuIaXNmPUeVVEMdU6o2xcNFi/oqBLWayl77c0A94+dg0ZMhxAP7WMvkYou6eGRhEDUdnvEr0IW3GLGnrzwYl33rTPmlEPX82xk+GwdHvOBZJ/2Fejy4GCb+yS1ejLkz613mYdX+YHjEPqx65ykmeVeVy/k1k6mPL612o+7ybe5TH1bodh1tpOh9g=
+-->
