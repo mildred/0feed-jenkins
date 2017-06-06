@@ -38,6 +38,17 @@
          interface file to the directory containing the program.
          Usually, you can just leave it as '.'.
     -->
+    <implementation arch="*-src" id="jenkins" local-path="." version="2.63">
+      <command name="compile" shell-command="cp $SRCDIR/jenkins.war $DISTDIR">
+        <compile:implementation>
+          <command name="run" path="jenkins.war">
+            <runner interface="http://mildred.github.io/0feed-jenkins/openjdk-jre.xml">
+              <arg>-jar</arg>
+            </runner>
+          </command>
+        </compile:implementation>
+      </command>
+    </implementation>
     <implementation arch="*-src" id="." local-path="." version="2.63">
       <command name="compile" shell-command="cp $SRCDIR/jenkins.war $DISTDIR">
         <compile:implementation>
@@ -67,5 +78,5 @@
   </group>
 </interface>
 <!-- Base64 Signature
-iQEcBAABAgAGBQJZNxO+AAoJENVgVG6hbR05XXsH/A7Vg0JOTvKaJ5tJKX+Yy7j8twkR5VYLSQ/UJS0DZ8EkFYDwFZ8Hs+3wheJtJBC/c4zE8DxpUaBvVysJgSr36T/M+2xODCud+vv023Wif2HPaxZismIwDpC+iDoRTsdKi8eRpD3zla52FIfiCSKpoynEzUego0xdGPZrumkyrkqb+ZcnctBvpDOv3uimbcY4YpCFiFDgy0FgXmoOFRFt/5EfdxxL4tohxURPakKC+Dtq1X7GHt6CIYPE3CsuzvngWzxVHyKJ2sbmoyf1mmdIOPF0YIMvmVIoJbqvZbg77ZFuMfw0N3ZUBBck2r7uTOT/29V9QhQIKFFUDlsGiWrMaVQ=
+iQEcBAABAgAGBQJZNxQAAAoJENVgVG6hbR05VJMH/0tgtukx/zNpgLJ2XKivb9xBW3J087Rw2rqHSppq7QvggXwjzQmpc80XMpXV+lxZ+k30uqe5ik6R5lW6tymdim34ILbbDOgQArchPXPFYA+M4Iv1U3OIQx7pvsT8ba4KAOdAvdD5z02g7oW5oF78XZZK7+B1t+gl19a4pSCTmeG7+rNNhVDl2IFqKRUe7Lpx7FIA/K6Wd1Hob22f+vsBW11vq+/k22jG0YtrGr7FfPPtqcMvqLe2KTSu8ac87fPDDGd5BnSEEh1KTeefZakkWrNUMSVWTfPtMPA80ZGnNJL5xB02YduVk3fmkSIQOpUmLzAawSV8BVTNypTP3RtCa88=
 -->
