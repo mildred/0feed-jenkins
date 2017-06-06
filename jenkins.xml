@@ -25,31 +25,6 @@
   <!-- Set 'main' to the relative path of your default
         executable within the implementation's directory.
         E.g.: "myprog" or "bin/myprog" -->
-  <group main="jenkins">
-    <!-- List any libraries your program needs here -->
-    <!--
-    <requires interface="http://site/library">
-      <environment insert="python" name="PYTHONPATH"/>
-    </requires>
-    -->
-
-    <!-- List all implementations here.
-         For local interfaces, '.' is a relative path from this
-         interface file to the directory containing the program.
-         Usually, you can just leave it as '.'.
-    -->
-    <implementation arch="*-src" id="." local-path="." version="0">
-      <command name="compile" shell-command="cp $SRCDIR/jenkins.war $DISTDIR">
-        <compile:implementation>
-          <command name="run" path="jenkins.war">
-            <runner interface="http://mildred.github.io/0feed-jenkins/openjdk-jre.xml">
-              <arg>-jar</arg>
-            </runner>
-          </command>
-        </compile:implementation>
-      </command>
-    </implementation>
-  </group>
   <group>
     <command name="run" path="jenkins.war">
       <runner interface="http://mildred.github.io/0feed-jenkins/openjdk-jre.xml">
