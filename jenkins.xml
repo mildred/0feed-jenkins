@@ -7,4 +7,15 @@
   <name>jenkins</name>
   <summary>Jenkins continuous integration</summary>
   <description></description>
+  <group>
+    <command name="run" path="jenkins.war">
+      <runner interface="http://mildred.github.io/0feed-jenkins/openjdk-jre.xml">
+        <arg>-jar</arg>
+      </runner>
+    </command>
+    <implementation arch="*-*" id="sha1new=0564bef3eaab6624fb863571073d9e9f9f910e78" released="2017-06-03" version="2.63">
+      <manifest-digest sha256new="SZYIW2GHKMGG52P4PLPROLW5BIKYSVSM5ES2JPOVUIRGXHJTNNBA"/>
+      <file dest="jenkins.war" href="http://mirrors.jenkins.io/war/2.63/jenkins.war" size="71195138"/>
+    </implementation>
+  </group>
 </interface>
