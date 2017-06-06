@@ -9,9 +9,9 @@ install:
   - wget https://downloads.sourceforge.net/project/zero-install/0install/2.12.1/0install-linux-x86_64-2.12.1.tar.bz2;
     tar xf 0install-linux-x86_64-2.12.1.tar.bz2;
     ( cd 0install-linux-x86_64-2.12.1 && ./install.sh home )
-  - 0install -c add 0compile http://0install.net/2006/interfaces/0compile.xml
-  - 0install -c add 0publish http://0install.net/2006/interfaces/0publish
-  - 0install -c add 0template http://0install.net/tools/0template.xml
+  - yes | 0install -c add 0compile http://0install.net/2006/interfaces/0compile.xml
+  - yes | 0install -c add 0publish http://0install.net/2006/interfaces/0publish
+  - yes | 0install -c add 0template http://0install.net/tools/0template.xml
 script:
   - eval "$(ssh-agent -s)"
   - gpg --version
