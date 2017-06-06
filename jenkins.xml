@@ -2,35 +2,18 @@
 <?xml-stylesheet type='text/xsl' href='interface.xsl'?>
 <interface uri="http://mildred.github.io/0feed-jenkins/jenkins.xml" xmlns="http://zero-install.sourceforge.net/2004/injector/interface" xmlns:compile="http://zero-install.sourceforge.net/2006/namespaces/0compile">
   <name>jenkins</name>
-  <summary>cures all ills</summary>
-  <description>
-    A longer, multi-line description of the behaviour of the
-    program goes here. State clearly what the program is for
-    (clearly enough that people who don't want it will
-    realise too).
-
-    Use a blank line to separate paragraphs.
-  </description>
-
-  <!-- Optionally, uncomment this to specify the program's homepage: -->
-  <!-- <homepage>http://site/prog</homepage> -->
-
-  <!-- Optionally, uncomment this to specify an icon: -->
-  <!-- <icon href='http://site/icon.png' type='image/png'/> -->
-
-  <!-- Optionally, uncomment this to give the address of
-       the signed master interface: -->
-  <!-- <feed-for interface='http://site/interface'/> -->
-
-  <!-- Set 'main' to the relative path of your default
-        executable within the implementation's directory.
-        E.g.: "myprog" or "bin/myprog" -->
+  <summary>Jenkins continuous integration</summary>
+  <description/>
   <group>
     <command name="run" path="jenkins.war">
       <runner interface="http://mildred.github.io/0feed-jenkins/openjdk-jre.xml">
         <arg>-jar</arg>
       </runner>
     </command>
+    <implementation arch="*-*" id="sha1new=0564bef3eaab6624fb863571073d9e9f9f910e78" released="2017-06-03" version="2.63">
+      <manifest-digest sha256new="SZYIW2GHKMGG52P4PLPROLW5BIKYSVSM5ES2JPOVUIRGXHJTNNBA"/>
+      <file dest="jenkins.war" href="http://mirrors.jenkins.io/war/2.63/jenkins.war" size="71195138"/>
+    </implementation>
     <implementation arch="*-*" id="sha1new=2c1fbadc4917e3533f23275baf63352a72bd158a" released="2017-06-06" version="2.64">
       <manifest-digest sha256new="VDJRRIR6CJMNUCJHYSGBDOCMH4UEN5T3D7ZWQ6ABIOFFCJFNSMOA"/>
       <file dest="jenkins.war" href="http://mirrors.jenkins.io/war/2.64/jenkins.war" size="71614221"/>
@@ -38,5 +21,5 @@
   </group>
 </interface>
 <!-- Base64 Signature
-iQEcBAABAgAGBQJZNyGDAAoJENVgVG6hbR05qFMH/3Naq0UIZnM+yQgSTXihGAw0iw4tsWW9oYGdT069hhPSg4jFYo24lFI4dK4gMcEVVqr/IkS1lrp1/am46lVonnaHd7pJlyo8AUmoX4e3xCFVWTZWafUxRq6/h9w+4R6iVo9hC9uFw7XTp48mw19q9K49TPVV+NcYuIaXNmPUeVVEMdU6o2xcNFi/oqBLWayl77c0A94+dg0ZMhxAP7WMvkYou6eGRhEDUdnvEr0IW3GLGnrzwYl33rTPmlEPX82xk+GwdHvOBZJ/2Fejy4GCb+yS1ejLkz613mYdX+YHjEPqx65ykmeVeVy/k1k6mPL612o+7ybe5TH1bodh1tpOh9g=
+iQEcBAABAgAGBQJZNyWgAAoJENVgVG6hbR052OYIALlsagy2Pwfi5OMuHos5yH+VLaZCvNlwOz4gYYOc0Cp4H0aLv/Q1Co8xx0D8ZWihHMEaWhTR/+ceh5GKCSe4Mwx1RdjNo6TG74YQJPdgg8We3jU0EbMfVadockXS+J6+tOQIMeWtta9CV7zSXJl5AX08+/wcLLRAWLajonflVx6H/rpNN/4zF2xiQFNu68Io9bjH8hYIsSiEZJwWbAtzs0MspXWGPdS3gSbuaxqCHffU5ZVmQ49rVEwaD53UyV3u7pfpLol/2tkh/YhRrcV4Bz3ucDD6I9/ESs5RXiXHfQqtWeHrc9wXkFWD7oIgCAl0ogRHSh+N5+Fs2B2l7t0hSRg=
 -->
