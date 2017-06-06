@@ -24,6 +24,7 @@ if [ -e gh-pages/$feed ]; then
   cp "$feed" "gh-pages/$feed";
   # TODO: report old interfaces to new feed
   # TODO: 0publish --ignore-duplicates -a "$feed.old" "gh-pages/$feed"
+  0publish -a "$feed.old" "gh-pages/$feed" || true
 else
   touch $feed.old;
   cp "$feed" "gh-pages/$feed";
