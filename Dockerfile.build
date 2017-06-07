@@ -1,0 +1,5 @@
+FROM debian:stable
+RUN \
+  export DEBIAN_FRONTEND=noninteractive; \
+  apt-get update; \
+  apt-get install curl wget lftp python-gobject
