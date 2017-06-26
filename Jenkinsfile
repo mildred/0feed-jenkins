@@ -5,9 +5,7 @@ pipeline {
   stages {
     stage('Prepare') {
       steps {
-        try {
-          sh 'apt-get update'
-        } catch(e) {}
+        sh returnStatus: true, script: 'apt-get update'
         sh 'DEBIAN_FRONTEND=noninteractive apt-get install wget python-gobject lftp'
         sh 'wget https://downloads.sourceforge.net/project/zero-install/0install/2.12.1/0install-linux-x86_64-2.12.1.tar.bz2'
         sh 'tar xf 0install-linux-x86_64-2.12.1.tar.bz2'
