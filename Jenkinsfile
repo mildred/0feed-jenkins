@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    docker 'debian:stable'
+    docker 'debian:sid'
   }
   stages {
     stage('Prepare') {
