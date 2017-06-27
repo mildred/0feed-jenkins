@@ -1,4 +1,4 @@
-// vim: tw=0
+// vim: tw=0:ft=groovy
 pipeline {
   agent {
     // Requires 'ps' to be able to function correctly (package procps)
@@ -23,9 +23,9 @@ pipeline {
         url = 'http://mirrors.jenkins.io/war/'
       }
       steps {
-        sh '''
+        sh $/
           lftp -c "open $url; cls" | sed -n 's:^\([0-9\.]*\)/$:\1:p' | sort -V | tail -n 1 >version
-        '''
+        $/
         sh 'echo "Latest version is $(cat version)"'
       }
     }
