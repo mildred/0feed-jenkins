@@ -1,2 +1,2 @@
 #!/bin/sh
-sed -i '/^<!-- Base64 Signature/,/^-->/ d'
+sed -i '/^<!-- Base64 Signature/,/^-->/ d' "$1"
