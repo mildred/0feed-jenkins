@@ -25,7 +25,7 @@ pipeline {
       steps {
         sh $/
           lftp -c "open $url; cls" | sed -n 's:^\([0-9\.]*\)/$:\1:p' | sort -V | tail -n 1 >version
-        $/
+        /$
         sh 'echo "Latest version is $(cat version)"'
       }
     }
