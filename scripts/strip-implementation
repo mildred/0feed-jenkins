@@ -1,0 +1,2 @@
+#!/bin/sh
+sed -i '/<implementation .*version=["'"'"']'"$1"'["'"'"']/,/<\/implementation>/ d' "$2"

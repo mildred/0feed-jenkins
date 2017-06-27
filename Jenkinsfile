@@ -23,22 +23,20 @@ pipeline {
         url = 'http://mirrors.jenkins.io/war/'
       }
       steps {
-        sh $/
-          lftp -c "open $url; cls" | sed -n 's:^\([0-9\.]*\)/$:\1:p' | sort -V | tail -n 1 >version
-        /$
+        sh 'scripts/last-version >version'
         sh 'echo "Latest version is $(cat version)"'
       }
     }
     stage('Build') {
       steps {
         // Download current interface, strip signature and new version
-        sh 'curl -s "$INTERFACE_URL" -o jenkins.xml.old'
-        sh '''sed -i '/^<!-- Base64 Signature/,/^-->/ d' <jenkins.xml.old >jenkins.xml.new'''
-        sh '''sed -i '/<implementation .*version=["'"'"']'"$(cat version)"'["'"'"']/,/<\/implementation>/ d' jenkins.xml.new'''
+        sh 'curl -s "\$INTERFACE_URL" -o jenkins.xml.old'
+        sh 'scripts/strip-signature <jenkins.xml.old >jenkins.xml.new'
+        sh 'scripts/strip-implementation "\$(cat version)" jenkins.xml.new'
         sh 'diff -u jenkins.xml.old jenkins.xml.new'
 
         // Generate new snippet for new version
-        sh '0template -o jenkins.xml.snip jenkins.xml.template version=$(cat version)'
+        sh '0template -o jenkins.xml.snip jenkins.xml.template version=\$(cat version)'
         sh 'cat jenkins.xml.snip'
         sh '0publish -a jenkins.xml.snip jenkins.xml.new'
         sh 'diff -u jenkins.xml.old jenkins.xml.new'
