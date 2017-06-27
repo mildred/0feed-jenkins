@@ -28,6 +28,9 @@ pipeline {
       }
     }
     stage('Build') {
+      script {
+        def passphrase = credentials('gpgkeys/0install/D560546EA16D1D39/passphrase')
+      }
       steps {
         // Download current interface, strip signature and new version
         sh 'curl -sL "\$INTERFACE_URL" -o jenkins.xml.old'
@@ -44,8 +47,7 @@ pipeline {
         sh 'diff -u jenkins.xml.old jenkins.xml.new || true'
 
         // Sign new interface
-        writeFile file: "passphrase",
-          text: credentials('gpgkeys/0install/D560546EA16D1D39/passphrase')
+        writeFile file: "passphrase", text: passphrase
         sh 'scripts/sign-interface jenkins.xml.new'
         sh 'diff -u jenkins.xml.old jenkins.xml.new || true'
       }
