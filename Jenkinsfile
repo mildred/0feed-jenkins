@@ -44,17 +44,7 @@ pipeline {
         // Sign new interface
         writeFile file: "passphrase",
           text: credentials('gpgkeys/0install/D560546EA16D1D39/passphrase')
-        sh '''
-          eval "$(gpg-agent --batch --enable-ssh-support -s)"
-          gpg --passphrase-file passphrase --batch --import "$GPG_KEY_ID.skey"
-          gpg --passphrase-file passphrase --batch --default-key $GPG_KEY_ID \
-            --sign --detach-sign --output jenkins.xml.sig jenkins.xml.new
-          printf "<!-- Base64 Signature\n%s\n-->\n" \
-            $(base64 -w0 <jenkins.xml.sig) >>jenkins.xml.new
-          gpg --passphrase-file passphrase --batch \
-            --armor --output $GPG_KEY_ID.gpg --export $GPG_KEY_ID || true
-          rm passphrase
-        '''
+        sh 'scripts/sign-interface jenkins.xml.new'
         sh 'diff -u jenkins.xml.old jenkins.xml.new'
       }
     }
