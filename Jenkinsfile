@@ -1,6 +1,5 @@
 pipeline {
   agent {
-    # Requires 'ps' to be able to function correctly
     dockerfile { dir 'build' }
   }
   stages {
