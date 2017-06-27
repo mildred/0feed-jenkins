@@ -35,19 +35,19 @@ pipeline {
         sh 'cp jenkins.xml.old jenkins.xml.new'
         sh 'scripts/strip-signature jenkins.xml.new'
         sh 'scripts/strip-implementation "\$(cat version)" jenkins.xml.new'
-        sh 'diff -u jenkins.xml.old jenkins.xml.new'
+        sh 'diff -u jenkins.xml.old jenkins.xml.new || true'
 
         // Generate new snippet for new version
         sh '0template -o jenkins.xml.snip jenkins.xml.template version=\$(cat version)'
         sh 'cat jenkins.xml.snip'
         sh '0publish -a jenkins.xml.snip jenkins.xml.new'
-        sh 'diff -u jenkins.xml.old jenkins.xml.new'
+        sh 'diff -u jenkins.xml.old jenkins.xml.new || true'
 
         // Sign new interface
         writeFile file: "passphrase",
           text: credentials('gpgkeys/0install/D560546EA16D1D39/passphrase')
         sh 'scripts/sign-interface jenkins.xml.new'
-        sh 'diff -u jenkins.xml.old jenkins.xml.new'
+        sh 'diff -u jenkins.xml.old jenkins.xml.new || true'
       }
     }
     stage('Deploy'){
