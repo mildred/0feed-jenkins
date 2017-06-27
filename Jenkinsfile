@@ -31,6 +31,7 @@ pipeline {
       steps {
         // Download current interface, strip signature and new version
         sh 'curl -s "\$INTERFACE_URL" -o jenkins.xml.old'
+        sh 'cat jenkins.xml.old'
         sh 'cp jenkins.xml.old jenkins.xml.new'
         sh 'scripts/strip-signature jenkins.xml.new'
         sh 'scripts/strip-implementation "\$(cat version)" jenkins.xml.new'
