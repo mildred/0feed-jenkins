@@ -28,11 +28,10 @@ pipeline {
       }
     }
     stage('Build') {
+      environment {
+        GPG_PASSPHRASE = credentials('gpgkeys/0install/D560546EA16D1D39/passphrase')
+      }
       steps {
-        environment {
-          GPG_PASSPHRASE = credentials('gpgkeys/0install/D560546EA16D1D39/passphrase')
-        }
-
         // Download current interface, strip signature and new version
         sh 'curl -sL "\$INTERFACE_URL" -o jenkins.xml.old'
         sh 'cat jenkins.xml.old'
