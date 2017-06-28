@@ -48,7 +48,6 @@ pipeline {
 
         // Sign new interface
         //writeFile file: "passphrase", text: passphrase
-        sh 'echo "$GPG_PASSPHRASE" >passphrase'
         sh 'scripts/sign-interface jenkins.xml.new'
         sh 'diff -u jenkins.xml.old jenkins.xml.new || true'
       }
