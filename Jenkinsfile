@@ -66,6 +66,7 @@ pipeline {
         sshagent(credentials: ['ssh_deploy_github_0feed-jenkins']){
           sh 'scripts/clone-gh-pages'
           sh 'cp jenkins.xml.new gh-pages/jenkins.xml'
+          sh 'cp "$GPG_KEY_ID.gpg" "gh-pages/$GPG_KEY_ID.gpg"'
           sh 'scripts/update-gh-pages "Automatic deploy version $(cat version)"'
         }
       }
