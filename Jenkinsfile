@@ -59,7 +59,7 @@ pipeline {
       steps {
         sshagent(credentials: ['ssh_deploy_github_0feed-jenkins']){
           sh 'scripts/clone-gh-pages'
-          sh 'cp jenkins.xml.new gh-pahes/jenkins.xml'
+          sh 'cp jenkins.xml.new gh-pages/jenkins.xml'
           sh 'scripts/update-gh-pages'
         }
       }
