@@ -31,9 +31,6 @@ pipeline {
       }
     }
     stage('Build') {
-      environment {
-        GPG_PASSPHRASE = credentials('gpgkeys/0install/D560546EA16D1D39/passphrase')
-      }
       steps {
         // Download current interface, strip signature and new version
         sh 'curl -sL "\$INTERFACE_URL" -o jenkins.xml.old'
@@ -48,10 +45,14 @@ pipeline {
         sh 'cat jenkins.xml.snip'
         sh '0publish -a jenkins.xml.snip jenkins.xml.new'
         sh 'diff -u jenkins.xml.old jenkins.xml.new || true'
-
-        // Sign new interface
-        //writeFile file: "passphrase", text: passphrase
-        sh 'scripts/sign-interface jenkins.xml.new'
+      }
+    }
+    stage('Sign') {
+      environment {
+        GPG_PASSPHRASE = credentials('gpgkeys/0install/D560546EA16D1D39/passphrase')
+      }
+      steps {
+        sh 'scripts/sign-interface jenkins.xml.new jenkins.xml.old'
         sh 'diff -u jenkins.xml.old jenkins.xml.new || true'
       }
     }

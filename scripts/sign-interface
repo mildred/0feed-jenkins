@@ -1,6 +1,19 @@
 #!/bin/sh
 
 f="$1"
+old="$2"
+
+if [ -e "$old" ]; then
+  sed -i '/^<!-- Base64 Signature/,/^-->/ d' "$old" >"$old.nosig"
+
+  if ! diff "$old.nodig" "$new"; then
+    echo "Reusing $old (content did not change)"
+    mv "$old.nosig" "$new"
+    exit 0
+  else
+    rm "$old.nosig"
+  fi
+fi
 
 echo "$GPG_PASSPHRASE" >passphrase
 unset GPG_PASSPHRASE
