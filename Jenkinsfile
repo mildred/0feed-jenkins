@@ -9,13 +9,6 @@ pipeline {
     INTERFACE_URL = 'http://mildred.github.io/0feed-jenkins/jenkins.xml'
   }
   stages {
-    stage('Test') {
-      steps {
-        withCredentials([file(credentialsId: '9c48fe3b-05af-4bde-b670-569609c3418f', variable: 'ssh_key')]) {
-          echo ssh_key
-        }
-      }
-    }
     stage('Prepare') {
       steps {
         sh 'id'
@@ -61,7 +54,13 @@ pipeline {
     }
     stage('Deploy'){
       steps {
-        sh 'scripts/clone-gh-pages'
+        withCredentials([file(credentialsId: 'ssh_deploy_0feed-jenkins', variable: 'ssh_key')]) {
+        }
+        sshagent(credentials: ['ssh_deploy_github_0feed-jenkins']){
+          sh 'scripts/clone-gh-pages'
+          sh 'cp jenkins.xml.new gh-pahes/jenkins.xml'
+          sh 'scripts/update-gh-pages'
+        }
       }
     }
   }
