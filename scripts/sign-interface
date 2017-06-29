@@ -8,7 +8,7 @@ if [ -e "$old" ]; then
 
   if ! diff "$old.nodig" "$new"; then
     echo "Reusing $old (content did not change)"
-    mv "$old.nosig" "$new"
+    mv "$old.nosig" "$f"
     exit 0
   else
     rm "$old.nosig"
