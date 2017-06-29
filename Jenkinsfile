@@ -53,6 +53,9 @@ pipeline {
       }
     }
     stage('Deploy'){
+      environment {
+        GIT_SSH_COMMAND = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+      }
       steps {
         sshagent(credentials: ['ssh_deploy_github_0feed-jenkins']){
           sh 'scripts/clone-gh-pages'
