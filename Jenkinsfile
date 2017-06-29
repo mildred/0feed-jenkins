@@ -55,6 +55,7 @@ pipeline {
     stage('Deploy'){
       environment {
         GIT_SSH_COMMAND = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+        EMAIL = 'jenkins@example.org'
       }
       steps {
         sh 'rm -rf gh-pages'
