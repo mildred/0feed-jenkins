@@ -54,8 +54,6 @@ pipeline {
     }
     stage('Deploy'){
       steps {
-        withCredentials([file(credentialsId: 'ssh_deploy_0feed-jenkins', variable: 'ssh_key')]) {
-        }
         sshagent(credentials: ['ssh_deploy_github_0feed-jenkins']){
           sh 'scripts/clone-gh-pages'
           sh 'cp jenkins.xml.new gh-pahes/jenkins.xml'
