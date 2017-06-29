@@ -4,9 +4,9 @@ f="$1"
 old="$2"
 
 if [ -e "$old" ]; then
-  sed '/^<!-- Base64 Signature/,/^-->/ d' "$old" >"$old.nosig"
+  sed '/^<!-- Base64 Signature/,/^-->/ d' <"$old" >"$old.nosig"
 
-  if ! diff "$old.nosig" "$new"; then
+  if ! diff "$old.nosig" "$f"; then
     echo "Reusing $old (content did not change)"
     mv "$old.nosig" "$f"
     exit 0
