@@ -1,5 +1,8 @@
 // vim: tw=0:ft=groovy
 pipeline {
+  triggers {
+    cron('H H * * *')
+  }
   agent {
     // Requires 'ps' to be able to function correctly (package procps)
     dockerfile { dir 'build' }
