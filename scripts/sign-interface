@@ -11,6 +11,7 @@ gpg --passphrase-file passphrase --batch --pinentry-mode loopback \
   --default-key $GPG_KEY_ID --sign --detach-sign --output "$f.sig" "$f"
 printf "<!-- Base64 Signature\n%s\n-->\n" $(base64 -w0 <"$f.sig") >>"$f"
 gpg --passphrase-file passphrase --batch --pinentry-mode loopback \
-  --armor --output $GPG_KEY_ID.gpg --export $GPG_KEY_ID || true
+  --armor --output $GPG_KEY_ID.gpg --export $GPG_KEY_ID
 rm passphrase
+exit 0
 
