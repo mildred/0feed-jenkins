@@ -9,6 +9,15 @@ pipeline {
     INTERFACE_URL = 'http://mildred.github.io/0feed-jenkins/jenkins.xml'
   }
   stages {
+    stage('Test') {
+      environment {
+        SSH_KEY1 = credentials('id_ed25519_deploy (sshkey/deploy/github.com/0feed-jenkins)')
+        SSH_KEY2 = credentials('sshkey/deploy/github.com/0feed-jenkins')
+      }
+      steps {
+        sh 'env | grep SSH_KEY'
+      }
+    }
     stage('Prepare') {
       steps {
         sh 'id'
@@ -54,9 +63,7 @@ pipeline {
     }
     stage('Deploy'){
       steps {
-        sh '''
-          eval "$(gpg-agent --batch --enable-ssh-support -s)"
-        '''
+        sh 'scripts/clone-gh-pages'
       }
     }
   }
