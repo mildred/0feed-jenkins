@@ -4,7 +4,7 @@ f="$1"
 old="$2"
 
 if [ -e "$old" ]; then
-  sed -i '/^<!-- Base64 Signature/,/^-->/ d' "$old" >"$old.nosig"
+  sed '/^<!-- Base64 Signature/,/^-->/ d' "$old" >"$old.nosig"
 
   if ! diff "$old.nosig" "$new"; then
     echo "Reusing $old (content did not change)"
