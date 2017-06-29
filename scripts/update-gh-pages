@@ -2,5 +2,5 @@
 
 cd gh-pages
 git add -A
-git ci -m "Automatic deployment"
+git commit -m "Automatic deployment"
 git push origin HEAD
