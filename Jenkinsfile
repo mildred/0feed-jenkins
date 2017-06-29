@@ -10,12 +10,10 @@ pipeline {
   }
   stages {
     stage('Test') {
-      environment {
-        SSH_KEY1 = credentials('git (sshkey/deploy/github.com/0feed-jenkins)')
-        //SSH_KEY2 = credentials('sshkey/deploy/github.com/0feed-jenkins')
-      }
       steps {
-        sh 'env | grep SSH_KEY'
+        withCredentials([file(credentialsId: '9c48fe3b-05af-4bde-b670-569609c3418f', variable: 'ssh_key')]) {
+          echo ssh_key
+        }
       }
     }
     stage('Prepare') {
