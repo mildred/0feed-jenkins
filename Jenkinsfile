@@ -41,6 +41,7 @@ pipeline {
         sh 'diff -u jenkins.xml.old jenkins.xml.new || true'
 
         // Generate new snippet for new version
+        sh 'rm jenkins.war'
         sh '0template -o jenkins.xml.snip jenkins.xml.template version=\$(cat version)'
         sh 'cat jenkins.xml.snip'
         sh '0publish -a jenkins.xml.snip jenkins.xml.new'
