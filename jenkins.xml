@@ -82,12 +82,12 @@
       <manifest-digest sha256new="WXAIGJHYAV45454WF6UME4QZVGSYXZ2YP7RXJBM3QZYOGUWRATNA"/>
       <file dest="jenkins.war" href="http://mirrors.jenkins.io/war/2.85/jenkins.war" size="73774722"/>
     </implementation>
-    <implementation arch="*-*" id="sha1new=a5ed2531a1add3c46268754b24bbb9428e4b409a" released="2017-10-24" version="2.86">
+    <implementation arch="*-*" id="sha1new=a5ed2531a1add3c46268754b24bbb9428e4b409a" released="2017-10-25" version="2.86">
       <manifest-digest sha256new="T3Y3E4VKUZS2Y5UVJ2ZFPKF5LIQAHVM4CXIM6BFURL6RPBHMD2LQ"/>
       <file dest="jenkins.war" href="http://mirrors.jenkins.io/war/2.86/jenkins.war" size="73796979"/>
     </implementation>
   </group>
 </interface>
 <!-- Base64 Signature
-iQEzBAABCAAdFiEERU9ErVvTh8vuHppj1WBUbqFtHTkFAlnviIMACgkQ1WBUbqFtHTljrwf+PxM7LLWSXEWrOMSE6TGKzxswp9125fztMeEJVprUh27qwsKYQFILAe1U9Xg4lOXzmQWXtYTFsxZTbws9qba9LUlYIaDxhazEz7lguvvpLjzO9IWs+bSWbtbfXeJjjNzZxAY66seHlZlkVN/x4YyvCyJFzxgW9HOtYm/dsPAprzlMx7+25M+TLKBCt/qk9x3UMQLPNmD6SF3V1ortCPHlNIuKLbLAa3yHDNhdgWaaJtbiKBP1j4u2+ZWIhF+qjRTKLnl7qMPs3Brfjxt/irQKdQPuaYal1iewimk4mb/vTZE5NvSSRmBhh1CnDLMGxyPPBdT6OWcvn9KY0ap2LpVZxg==
+iQEzBAABCAAdFiEERU9ErVvTh8vuHppj1WBUbqFtHTkFAlnw2g0ACgkQ1WBUbqFtHTknMAgAhG7cTWI4vBD1L6jN/ZxOAs2weT/4q7mYmQX1A098iM7E8RMWp0dg79S49aGdOvmAIV2biKfx8aoCVOvvQl/0Kpym/c8scG0zegoqomab68rntIUtnskTjSpCXyKUtrBCndYcqci5X9IyqKDCZi+m11jd+UxImNSneNSnfzRfopiuZd4EvXCdTVIGlvW83rSHjx1au8h0PqlIFqC3ihy0KgZt6dKeLl0Kc7wcGXWlvR3AdXd6obj42mMvlq/pXu5O/9qVRP1tKi5QzrvHBVJsorO/9bzFiR8pLFDP/b+s1HJRXgxG/v+6gyC1L4S4NaF/n+arZkChWMiNcrbOEz78eQ==
 -->
